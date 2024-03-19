@@ -1,0 +1,36 @@
+<table class="table table-info">
+    <thead>
+      <tr>
+        <th>Citizen ID</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Email</th>
+        <th>Mobile No</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>Aadhar Status</th>
+        <th>More Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ citizen.id }}</td>
+        <td>{{ citizen.name }}</td>
+        <td>{{ citizen.dob | date : "dd-MMM-YYYY" }}</td>
+        <td>{{ citizen.emailId }}</td>
+        <td>{{ citizen.mobileNo }}</td>
+        <td>{{ citizen.address }}</td>
+        <td>{{ citizen.gender }}</td>
+        <td>{{ citizen.status }}</td>
+        <!-- <td>
+          <button
+            type="submit"
+            class="btn btn-dark"
+            (click)="getAadharStatus(citizen.emailId, citizen.mobileNo)"
+          >
+            Click Here
+          </button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>

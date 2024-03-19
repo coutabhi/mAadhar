@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="mAadhar-Application-Test-Suite">
+	<parameter name="fileLoc"
+		value="C:\\Users\\abhis\\Desktop\\AadharApplication"></parameter>
+	<parameter name="websiteURL" value="http://localhost:4200/"></parameter>
+	<parameter name="driverPath"
+		value="C:\\Users\\abhis\\Desktop\\FSD_Learning\\Phase5 Learning\\chromedriver-win64\\chromedriver.exe"></parameter>
+	<test parallel="false" name="mAadhar-Application-Test">
+		<classes>
+			<class name="gov.app.test.mAadharTestClass" />
+		</classes>
+	</test>
+</suite>

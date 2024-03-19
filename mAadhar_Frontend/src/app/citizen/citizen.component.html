@@ -1,0 +1,101 @@
+<div style="height: 100vh">
+  <span *ngIf="showDashboard; then Dashboard; else LoginForm"></span>
+  <ng-template #Dashboard>
+    <div style="display: flex; justify-content: flex-end">
+      <button type="submit" class="btn btn-danger" (click)="logout()">
+        Logout
+      </button>
+    </div>
+    <h1 style="text-align: center">Welcome,{{ citizen.name }}!</h1>
+    <div style="text-align: center">
+      <h1>Photo</h1>
+    </div>
+    <table class="table table-info">
+      <thead>
+        <tr>
+          <th>Citizen ID</th>
+          <th>Name</th>
+          <th>Date of Birth</th>
+          <th>Email</th>
+          <th>Mobile No</th>
+          <th>Address</th>
+          <th>Gender</th>
+          <th>Aadhar Status</th>
+          <th>More Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ citizen.id }}</td>
+          <td>{{ citizen.name }}</td>
+          <td>{{ citizen.dob | date : "dd-MMM-YYYY" }}</td>
+          <td>{{ citizen.emailId }}</td>
+          <td>{{ citizen.mobileNo }}</td>
+          <td>{{ citizen.address }}</td>
+          <td>{{ citizen.gender }}</td>
+          <td>{{ citizen.status }}</td>
+          <td>
+            <button
+              type="submit"
+              class="btn btn-dark"
+              (click)="getAadharStatus(citizen.emailId, citizen.mobileNo)"
+            >
+              Click Here
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="aadharStatus != ''">
+      <h1 style="color: green; text-align: center">{{ aadharStatus }}</h1>
+    </div>
+  </ng-template>
+
+  <ng-template #LoginForm>
+    <div class="container m-0">
+      <div class="row justify-content-center vh-100 align-items-center">
+        <div class="col-md-8 p-0 h-100">
+          <img src="../../assets/images/6057485.jpg" class="img-fluid h-100" alt="Responsive image">
+        </div>
+        <div class="col-md-4">
+          <div class="container m-5">
+            <h1></h1>
+            <h2 class="text-center"><img src="../../assets/images/aadhaar_english_logo.svg" alt="">Login</h2>
+            <form id="loginForm" (ngSubmit)="loginAsCitizen()">
+              <div class="form-group mb-3">
+                <label for="email">Enter Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+                  [(ngModel)]="citizen.emailId" required>
+                <div *ngIf="citizenForm.get('emailId')?.errors?.['required']" class="text-danger">
+                  Email is required
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="password">Enter Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                  [(ngModel)]="citizen.mobileNo" required>
+                <div *ngIf="citizenForm.get('mobileNo')?.errors?.['required']" class="text-danger">
+                  Password is required
+                </div>
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-dark btn-sm align-center">Click to Login</button>
+              </div>
+              <div class="text-center mt-3">
+                <small>Not have an account! <a href="/register">Click to register</a></small>
+              </div>
+            </form>
+            <div class="alert alert-danger mt-3" role="alert" id="loginError" style="display: none;">
+              Incorrect email or password.
+            </div>
+            <div class="alert alert-success mt-3" role="alert" id="loginSuccess" style="display: none;">
+              Login successful.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  
+</div>
